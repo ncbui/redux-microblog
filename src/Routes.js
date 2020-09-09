@@ -12,8 +12,8 @@ import PostForm from './PostForm';
  * State
  * 
  * Routes -> Homepage -> PostList
-          -> BlogPost -> Form(edit)
-          -> Form(new)
+          -> BlogPost -> PostForm(edit)
+          -> PostForm(new)
  */
 
 

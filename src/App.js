@@ -14,6 +14,11 @@ import Routes from './Routes';
 
 
 function App() {
+
+  function addBlogPost(formData) {
+    // submit data
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
