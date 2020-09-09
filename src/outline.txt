@@ -35,6 +35,7 @@ Store
 Form:pull header-text as a prop ;  input title, description, body. 
 Fill out with existing values if existing,
 
+maybe consider adding an action type for loading posts/comments
 
 
 Question: 
