@@ -1,0 +1,14 @@
+Component Hierarchy 
+
+App -> Navbar/Header
+    -> Routes -> Homepage -> PostList
+              -> BlogPost -> Form(edit)
+              -> Form(new) 
+
+Form:pull header-text as a prop ;  input title, description, body. 
+Fill out with existing values if existing,
+
+
+
+Question: 
+- when using reactstrap form input blocks, should we still use htmlFor instead of for 
