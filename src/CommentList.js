@@ -1,24 +1,21 @@
 import React from 'react';
-import CommentForm from './CommentForm';
-import Comment from './Comment';
 
-/** Comments renders a list of Comment components and a CommentForm component
+/** CommentList renders each comment for post
  * 
  *  State
  * 
  *  Props
+ * - comments: comments for the post {id: {},...}
  * 
- *  BlogPost -> CommentList -> {Comment, CommentForm}
+ *  BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
  */
-function CommentList() {
+function CommentList({comments}) {
 
 
   return (
     <div>
       <h3>Comments</h3>
-      {/* list of comments */}
-      <Comment />
-      <CommentForm />
+      {/* TODO: Add comments */}
     </div>
   )
 }

@@ -13,21 +13,28 @@ import {
 /** Renders Form to edit/create posts
  * 
  * Prop:
- * - toggleIsEditing: Function passed from BlogPost to toggle isEditing state
+ * - submitForm: Function passed from parent to handle form submission
+ * - toggleIsEditing (optional): Function passed from BlogPost to toggle isEditing state
+ * - postData (optional): Data passed from BlogPost, used to edit existing blog post
  * 
  * State:
  * - formData: Object about form data
  * 
+ * BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
+ * 
  */
 
 
-function PostForm({ toggleIsEditing }) {
-  const initialState = {
+function PostForm({ submitForm , toggleIsEditing, postData }) {
+  const emptyForm = {
     title: "",
     description: "",
     body: ""
   }
+
+  const initialState = postData ? postData : emptyForm;
   const [formData, setFormData] = useState(initialState);
+
   const { id } = useParams();
   const history = useHistory();
 
@@ -41,13 +48,14 @@ function PostForm({ toggleIsEditing }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    // TODO: submit form data
+    submitForm(formData);
+    setFormData(emptyForm);
     history.push("/");
   }
 
   // If form is rendered by BlogPost, toggle isEditing state
   // if not, redirect to homepage
-  function cancelRedirect(evt) {
+  function handleRedirect(evt) {
     if (id) {
       // console.log("this is id", id)
       toggleIsEditing()
@@ -94,7 +102,7 @@ function PostForm({ toggleIsEditing }) {
         </FormGroup>
 
         <div className="row">
-        <Button type="button" onClick={cancelRedirect} className="btn btn-secondary"> Cancel </Button>
+        <Button type="button" onClick={handleRedirect} className="btn btn-secondary"> Cancel </Button>
         <Button>Submit</Button>
         </div>
 

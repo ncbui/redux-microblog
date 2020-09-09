@@ -13,10 +13,11 @@ import {
  *  - formData: Object about form data
  * 
  *  Props
+ * - submitComment: function from parent to handle form submission
  * 
- *  CommentList -> CommentForm
+ *  BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
  */
-function CommentForm() {
+function CommentForm({submitComment}) {
   const initialState = {
     body: ""
   }
@@ -32,7 +33,8 @@ function CommentForm() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    // TODO: submit comment data
+    submitComment(formData);
+    setFormData(initialState);
   }
 
   return (

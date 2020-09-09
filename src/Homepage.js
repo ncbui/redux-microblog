@@ -15,7 +15,7 @@ import PostList from './PostList';
 function Homepage() {
   return (
     <div className="Homepage">
-      <p> Welcome to <b>MICROBLOG</b>, out innovative site for postyposts</p>
+      <p> Welcome to <b>MICROBLOG</b>, our innovative site for postyposts</p>
       <PostList />
     </div>
   );

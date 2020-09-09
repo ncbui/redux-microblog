@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 import Homepage from './Homepage';
 import BlogPost from './BlogPost';
-import PostForm from './PostForm';
+import NewPost from './NewPost';
 
 
 /** Maps URL to components
@@ -13,7 +13,7 @@ import PostForm from './PostForm';
  * 
  * Routes -> Homepage -> PostList
           -> BlogPost -> PostForm(edit)
-          -> PostForm(new)
+          -> NewPost  -> PostForm(new)
  */
 
 
@@ -26,7 +26,7 @@ function Routes() {
         </Route>
 
         <Route exact path="/new">
-          <PostForm />
+          <NewPost />
         </Route>
 
         <Route exact path="/:id">

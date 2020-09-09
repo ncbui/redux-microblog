@@ -1,9 +1,36 @@
 Component Hierarchy 
 
-App -> Navbar/Header
-    -> Routes -> Homepage -> PostList
-              -> BlogPost -> Form(edit)
-              -> Form(new) 
+
+App 
+    Navbar/Header
+    Routes 
+        Homepage 
+            PostList        (redux)
+        NewPost             (redux)
+            PostForm(new) 
+        BlogPost            (redux)
+            CommentList 
+            CommentForm
+            PostDisplay 
+            PostForm(edit)
+
+Store
+{
+    posts: {
+        id: {
+            title, 
+            description, 
+            body,
+            comments: {
+                commentID: {body: "hello"},
+                commentID: {"nice work"},
+                commentID: {"wowza"},
+                commentID: { "¯\_(ツ)_/¯"}
+                }
+            }
+    }
+}
+              
 
 Form:pull header-text as a prop ;  input title, description, body. 
 Fill out with existing values if existing,
