@@ -1,14 +1,14 @@
 Component Hierarchy 
 
 
-App 
+App (redux - initialize store)
     Navbar/Header
     Routes 
         Homepage 
-            PostList        (redux)
-        NewPost             (redux)
+            PostList     (redux - getState)
+        NewPost          (redux - dispatch)
             PostForm(new) 
-        BlogPost            (redux)
+        BlogPost         (redux - dispatch)
             CommentList 
             CommentForm
             PostDisplay 
@@ -20,28 +20,11 @@ Store
         id: {
             title, 
             description, 
-            body,
-            comments: {
-                commentID: {body: "hello"},
-                commentID: {body: "nice work"},
-                commentID: {body: "wowza"},
-                commentID: {body: "¯\_(ツ)_/¯"}
-            }
-        }
-    }
-}
-
-other option:
-{
-    posts: {
-        id: {
-            title, 
-            description, 
             body     
     },
     comments: {
         postID: {
-            commentID: {body: "hello"},
+            commentID: {body: "hello},
             commentID: {body: "nice work"},
             commentID: {body: "wowza"},
             commentID: {body: "¯\_(ツ)_/¯"}
@@ -55,14 +38,23 @@ other option:
     }
 }
               
+TODOS:
+x research about combined reducers
+x make and export all actions with actionCreator
+x ensure actionCreator can be import wherever we want to dispatch
+x added <Provider> to index.js
+- dispatch from newPost and blogPost
+- PostList: get state from store, generate list of titles
+- newPost, blogPost: import uuid, add a id to each post/comment before calling action
+
+LATER TODOS:
+- add an action type for loading posts/comments
+
+
 
 Form:pull header-text as a prop ;  input title, description, body. 
 Fill out with existing values if existing,
 
-maybe consider adding an action type for loading posts/comments
-
-search for:
-combined reducers
 
 
 Question: 
