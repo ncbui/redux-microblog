@@ -20,10 +20,11 @@ function CommentList({comments, deleteComment}) {
   function showComments() {
     let commentsToRender = Object.keys(comments);
     // console.log("this is postsToRender", postsToRender)
-    return commentsToRender.map(comment => (
-      <li key={comment}> 
-        <button id={comment} onClick={handleDeleteComment}> X </button> 
-        {comments[comment].body}
+
+    return commentsToRender.map(commentId => (
+      <li key={commentId}> 
+        <button id={commentId} onClick={handleDeleteComment}> X </button> 
+        {comments[commentId].body}
       </li>
     ));
   }

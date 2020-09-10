@@ -20,10 +20,11 @@ export default function commentReducer(state, action) {
       })
 
     case DELETE_COMMENT:{
-      const copyPost = {...state[postId]}
+      // TODO: changed copyPost => copyPostInComments per code review; revisit naming
+      const copyPostInComments = {...state[postId]}
       // console.log("copyState", copyState, "copyState[postId]", copyState[postId]);
-      delete copyPost[commentId];
-      return { ...state, [postId]: copyPost };
+      delete copyPostInComments[commentId];
+      return { ...state, [postId]: copyPostInComments };
     }
 
     case ADD_POST: {

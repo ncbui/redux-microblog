@@ -1,4 +1,4 @@
-Component Hierarchy 
+_Component Hierarchy_
 
 Index  (redux - initialize store)
     App
@@ -14,7 +14,8 @@ Index  (redux - initialize store)
                 PostDisplay 
                 PostForm(edit)
 
-Store
+_Store_
+
 {
     posts: {
         id: {
@@ -24,17 +25,10 @@ Store
     },
     comments: {
         postID: {
-            commentID: {body: "hello},
-            commentID: {body: "nice work"},
-            commentID: {body: "wowza"},
-            commentID: {body: "¯\_(ツ)_/¯"}
-        },
-        postID: {
-            commentID: {body: "hello"},
-            commentID: {body: "nice work"},
-            commentID: {body: "wowza"},
-            commentID: {body: "¯\_(ツ)_/¯"}
-        }
+            commentID: {body},
+            commentID: {body},
+            },
+        postID: { }
     }
 }
               
@@ -55,6 +49,14 @@ x blogPost handleDeleteComment():
     - pushed to history to get re-render, 
     - but find out why component doesn't re-render once state changes. did we mutate state somewhere instead of copying
 x removed references to starter blog from react App
+- TODOS from CODEREVIEW Added
+
+
+- setup backend (see download)
+- create database, fill with seed data
+- make API to load info for PostList
+- for each blogpost, make API to receive full details
+- adding, editing, deleting updates backend
 
 
 LATER TODOS:
@@ -63,7 +65,7 @@ LATER TODOS:
 
 
 
-Form:pull header-text as a prop ;  input title, description, body. 
+Form: pull header-text as a prop ;  input title, description, body. 
 Fill out with existing values if existing,
 
 

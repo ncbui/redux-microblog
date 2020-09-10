@@ -12,6 +12,12 @@ import {starterBlog} from './starterBlog';
 // }
 
 
+/* TODO: 
+- combineReducer does the same thing; research
+- simpleReducer can set their default
+ */
+
+
 // TODO: remove starterBlog as default state
 // export default function rootReducer(state = combinedInitialState, action) {
 export default function rootReducer(state = starterBlog, action) {
