@@ -5,10 +5,10 @@ Index  (redux - initialize store)
         Navbar/Header
         Routes 
             Homepage 
-                PostList     (redux - getState)
+                PostList     (redux - selector)
             NewPost          (redux - dispatch)
                 PostForm(new) 
-            BlogPost         (redux - dispatch)
+            BlogPost         (redux - selector, dispatch)
                 CommentList 
                 CommentForm
                 PostDisplay 
@@ -45,10 +45,21 @@ x ensure actionCreator can be import wherever we want to dispatch
 x added <Provider> to index.js
 x dispatch from newPost and blogPost
 x PostList: get state from store, generate list of titles
-- newPost, blogPost: import uuid, add a id to each post/comment before calling action
+x forms create uuid, adds to data, send to parents (newPost, blogPost)
+x adding and editing of posts functionality
+x delete post
+x display comments for each post
+x add comments from post
+x delete comments from post
+x blogPost handleDeleteComment(): 
+    - pushed to history to get re-render, 
+    - but find out why component doesn't re-render once state changes. did we mutate state somewhere instead of copying
+x removed references to starter blog from react App
+
 
 LATER TODOS:
 - add an action type for loading posts/comments
+- When Backend added, remove references to starter blog from redux
 
 
 
@@ -59,3 +70,20 @@ Fill out with existing values if existing,
 
 Question: 
 - when using reactstrap form input blocks, should we still use htmlFor instead of for 
+
+
+Example dispatches
+
+  store.dispatch(addPost(1, { title: "new post" }))
+
+  store.dispatch(addPost(2, { title: "new post2" }))
+
+  store.dispatch(addComment(1, 1, { body: "new comment" }))
+
+  store.dispatch(addComment(1, 2, { body: "new comment2" }))
+
+  store.dispatch(deleteComment(1,1))
+
+  store.dispatch(deletePost(1))
+
+  store.dispatch(editPost(1, { title: "EDITED TITLE" }))

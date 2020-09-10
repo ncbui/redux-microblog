@@ -4,11 +4,7 @@ import PostList from './PostList';
 
 /** Renders Homepage component
  * 
- * Prop
- * 
- * State
- * 
- * Homepage -> PostList
+ * App -> Homepage -> PostList
  */
 
 

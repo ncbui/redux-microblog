@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { ADD_POST, EDIT_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
 import postReducer from './posts';
 import commentReducer from './comments';
@@ -48,6 +47,7 @@ export default function rootReducer(state = starterBlog, action) {
     case DELETE_COMMENT: {
       return {
         ...state,
+        posts: { ...state.posts},
         comments: commentReducer(state.comments, action)
       }
     }

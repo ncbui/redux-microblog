@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import PostForm from './PostForm';
 import { useDispatch } from 'react-redux';
 import { addPost } from './reducers/actionCreator';
@@ -7,9 +6,8 @@ import { addPost } from './reducers/actionCreator';
 
 /** Renders NewPost component
  * 
- * Prop
- * 
- * State
+ * Redux
+ * - can dispatch to store
  * 
  * Routes -> NewPost -> PostForm (new)
  */

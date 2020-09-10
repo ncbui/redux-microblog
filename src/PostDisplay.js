@@ -7,7 +7,7 @@ import React from 'react';
  * 
  *  BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
  */
-export default function PostDisplay({ postData}) {
+export default function PostDisplay({ postData }) {
 
   return (
     <div className="PostDisplay">

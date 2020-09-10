@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uuid from 'uuid/v4';
 import { 
   Form, 
   FormGroup, 
@@ -33,7 +34,8 @@ function CommentForm({submitComment}) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    submitComment(formData);
+    // create uuid, pass to parent with submitComment
+    submitComment(formData, uuid());
     setFormData(initialState);
   }
 

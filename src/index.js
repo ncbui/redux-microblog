@@ -8,6 +8,10 @@ import rootReducer from "./reducers/rootReducer";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
+/** Maps App to index.html
+ * Creates redux store, exposes that store to all components
+ */
+
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__

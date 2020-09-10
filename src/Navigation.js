@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import {
   Navbar, 
-  NavbarBrand, 
   NavItem, 
   Nav, 
   NavbarText
@@ -11,11 +10,7 @@ import {
 
 
 /** Renders Navigation component
- * 
- * Prop
- * 
- * State
- * 
+ *  
  * App -> Navbar/Header
  */
 

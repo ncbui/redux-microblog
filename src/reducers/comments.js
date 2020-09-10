@@ -20,8 +20,10 @@ export default function commentReducer(state, action) {
       })
 
     case DELETE_COMMENT:{
-      delete state[postId][commentId]
-      return { ...state }
+      const copyPost = {...state[postId]}
+      // console.log("copyState", copyState, "copyState[postId]", copyState[postId]);
+      delete copyPost[commentId];
+      return { ...state, [postId]: copyPost };
     }
 
     case ADD_POST: {
@@ -31,8 +33,9 @@ export default function commentReducer(state, action) {
       })
     } 
     case DELETE_POST: {
-      delete state[postId];
-      return { ...state }
+      const copyState = {...state};
+      delete copyState[postId];
+      return { ...copyState }
     }
 
     default:
