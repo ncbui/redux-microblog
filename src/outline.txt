@@ -1,18 +1,18 @@
 Component Hierarchy 
 
-
-App (redux - initialize store)
-    Navbar/Header
-    Routes 
-        Homepage 
-            PostList     (redux - getState)
-        NewPost          (redux - dispatch)
-            PostForm(new) 
-        BlogPost         (redux - dispatch)
-            CommentList 
-            CommentForm
-            PostDisplay 
-            PostForm(edit)
+Index  (redux - initialize store)
+    App
+        Navbar/Header
+        Routes 
+            Homepage 
+                PostList     (redux - getState)
+            NewPost          (redux - dispatch)
+                PostForm(new) 
+            BlogPost         (redux - dispatch)
+                CommentList 
+                CommentForm
+                PostDisplay 
+                PostForm(edit)
 
 Store
 {

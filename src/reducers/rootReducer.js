@@ -13,7 +13,7 @@ import {starterBlog} from './starterBlog';
 // }
 
 
-
+// TODO: remove starterBlog as default state
 // export default function rootReducer(state = combinedInitialState, action) {
 export default function rootReducer(state = starterBlog, action) {
   switch (action.type) {
