@@ -28,9 +28,10 @@ export default function postReducer(state, action) {
       })}
 
     case DELETE_POST:
-      console.log("this is state in delete post", state)
-      delete state[postId];
-      return {...state}
+      // console.log("this is state in delete post", state)
+      const copyState = { ...state };
+      delete copyState[postId];
+      return { ...copyState }
 
     default:
       return state;
