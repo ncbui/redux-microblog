@@ -19,10 +19,12 @@ import { ADD_POST, EDIT_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from '.
 // }
 
 const INITIAL_STATE = {
-  posts: {}
+  1: {
+    title: "POST"
+  }
 }
 
-function rootReducer(state=INITIAL_STATE, action) {
+export default function postReducer(state=INITIAL_STATE, action) {
   const postId = action.payload?.postId;
   const postData = action.payload?.postData;
   const commentId = action.payload?.commentId;
@@ -31,7 +33,7 @@ function rootReducer(state=INITIAL_STATE, action) {
     case ADD_POST:
       return ({
         ...state,
-        posts: {...state.posts, [postId]: postData}
+        [postId]: postData
       })
     
     case EDIT_POST:
@@ -41,15 +43,12 @@ function rootReducer(state=INITIAL_STATE, action) {
       })
 
     case DELETE_POST:
-        delete state.posts[postId];
-        return {...state}
+      console.log("this is state in delete post", state)
+      delete state[postId];
+      // delete state.comments[postId];
+      return {...state}
 
-    case ADD_COMMENT:
-      return ({
-        ...state,
-        posts: {[postId]: {comments: {[commentId]: commentData}}}
-      })
-
-    case DELETE_COMMENT:
+    default:
+      return state;
   }
 }
