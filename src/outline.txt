@@ -23,11 +23,35 @@ Store
             body,
             comments: {
                 commentID: {body: "hello"},
-                commentID: {"nice work"},
-                commentID: {"wowza"},
-                commentID: { "¯\_(ツ)_/¯"}
-                }
+                commentID: {body: "nice work"},
+                commentID: {body: "wowza"},
+                commentID: {body: "¯\_(ツ)_/¯"}
             }
+        }
+    }
+}
+
+other option:
+{
+    posts: {
+        id: {
+            title, 
+            description, 
+            body     
+    },
+    comments: {
+        postID: {
+            commentID: {body: "hello"},
+            commentID: {body: "nice work"},
+            commentID: {body: "wowza"},
+            commentID: {body: "¯\_(ツ)_/¯"}
+        },
+        postID: {
+            commentID: {body: "hello"},
+            commentID: {body: "nice work"},
+            commentID: {body: "wowza"},
+            commentID: {body: "¯\_(ツ)_/¯"}
+        }
     }
 }
               
@@ -36,6 +60,9 @@ Form:pull header-text as a prop ;  input title, description, body.
 Fill out with existing values if existing,
 
 maybe consider adding an action type for loading posts/comments
+
+search for:
+combined reducers
 
 
 Question: 
