@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PostForm from './PostForm';
+import { useDispatch } from 'react-redux';
+import { addPost } from './reducers/actionCreator';
 
 
 /** Renders NewPost component
@@ -15,8 +17,10 @@ import PostForm from './PostForm';
 
 function NewPost() {
 
-  function submitForm(data) {
-    // dispatching
+  const dispatch = useDispatch();
+
+  function submitForm(data, id) {
+    dispatch(addPost(id, data));
   }
 
   return (

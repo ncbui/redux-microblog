@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import PostForm from './PostForm';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import PostDisplay from './PostDisplay';
+import { useSelector, useDispatch } from 'react-redux';
+import { editPost } from './reducers/actionCreator';
 
 
 /** Renders BlogPost component
@@ -22,19 +24,24 @@ function BlogPost() {
   const [isEditing, setIsEditing] = useState(false);
 
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const postData = useSelector(store => store.posts[id]);
+  const commentData = useSelector(store => store.comments[id])
+  console.log("this is postData, comments", postData, commentData)
 
-  const starterBlog = {
-    title: "Our first blog post",
-    description: "orange sky, but we keep try",
-    body: "OH NO ORANGE",
-    id: 1,
-    comments: {
-      comment1: { body: "hello" },
-      comment2: { body: "nice work" },
-      comment3: { body: "wowza" },
-      comment4: { body: "¯\\_(ツ)_/¯" }
-    }
-  }
+  // const starterBlog = {
+  //   title: "Our first blog post",
+  //   description: "orange sky, but we keep try",
+  //   body: "OH NO ORANGE",
+  //   id: 1,
+  //   comments: {
+  //     comment1: { body: "hello" },
+  //     comment2: { body: "nice work" },
+  //     comment3: { body: "wowza" },
+  //     comment4: { body: "¯\\_(ツ)_/¯" }
+  //   }
+  // }
 
   function toggleIsEditing(evt) {
     setIsEditing(isEditing => !isEditing);
@@ -45,9 +52,11 @@ function BlogPost() {
     history.push("/");
   }
 
-  function submitPostForm(data) {
-    // dispatching
+  function submitPostForm(data, id) {
+    console.log("submitPostForm ran, here is data, id", data, id)
+    dispatch(editPost(id, data));
   }
+
   function submitCommentForm(data) {
     // dispatching
   }
@@ -58,7 +67,7 @@ function BlogPost() {
       return <PostForm
         toggleIsEditing={toggleIsEditing}
         submitForm={submitPostForm}
-        postData={starterBlog} // TODO: change postData when backend implemented
+        postData={postData} // TODO: change postData when backend implemented
       />;
     } else {
       return (
@@ -68,9 +77,9 @@ function BlogPost() {
           <Button
             onClick={handleDelete}>Delete</Button>
           <PostDisplay
-            postData={starterBlog} />
+            postData={postData} />
           <CommentList
-            comments={starterBlog.comments} // TODO: change postData when backend implemented
+            comments={commentData} // TODO: change postData when backend implemented
           />
           <CommentForm
             submitComment={submitCommentForm} />

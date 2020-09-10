@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams, Redirect, useHistory } from 'react-router-dom';
+import uuid from 'uuid/v4';
 import { 
   Form, 
   FormGroup, 
@@ -48,7 +49,14 @@ function PostForm({ submitForm , toggleIsEditing, postData }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    submitForm(formData);
+    // send data to the parent, if id not undefined, parent needs the id
+    // option 3: conditional logic here, if id is undefined, create it, parents always receive data and id
+    console.log("handleSubmit ran, formData, id", formData, id)
+    if (id) {
+      submitForm(formData, id);
+    } else {
+      submitForm(formData, uuid());
+    }
     setFormData(emptyForm);
     history.push("/");
   }

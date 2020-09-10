@@ -36,11 +36,29 @@ function PostList() {
 
   // loop over keys of posts, key = id
   // for each keys
+  function showPosts() {
+    // let postsToRender = [];
+    let postsToRender = Object.keys(posts);
+    
+    // for (let post in posts) {
+    //   postsToRender.push(
+    //     <li> 
+    //       <Link to={`/${post.id}`}><b>{post.title}</b></Link> <em> {post.description}</em>
+    //     </li>
+    //   )
+    // }
+    console.log("this is postsToRender", postsToRender)
+    return postsToRender.map(currentId => (
+      <li> 
+        <Link to={`/${currentId}`}><b>{posts[currentId].title}</b></Link> <em> {posts[currentId].description}</em>
+      </li>
+    ));
+  }
 
   return (
     <div className="PostList">
       <ul>
-        {/* {posts.map(post => <li> <Link to={`/${post.id}`}><b>{post.title}</b></Link> <em> {post.description}</em></li>)} */}
+        {showPosts()}
       </ul>
     </div>
   );

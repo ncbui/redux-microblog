@@ -43,8 +43,8 @@ x research about combined reducers
 x make and export all actions with actionCreator
 x ensure actionCreator can be import wherever we want to dispatch
 x added <Provider> to index.js
-- dispatch from newPost and blogPost
-- PostList: get state from store, generate list of titles
+x dispatch from newPost and blogPost
+x PostList: get state from store, generate list of titles
 - newPost, blogPost: import uuid, add a id to each post/comment before calling action
 
 LATER TODOS:

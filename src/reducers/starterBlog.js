@@ -1,9 +1,10 @@
 export const starterBlog = {
     posts: {
-            title: "Our first blog post",
-            description: "orange sky, but we keep try",
-            body: "OH NO ORANGE",
-            id: 1
+            1: {
+              title: "Our first blog post",
+              description: "orange sky, but we keep try",
+              body: "OH NO ORANGE"
+            }
           },
     comments: {
       1: {
