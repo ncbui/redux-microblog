@@ -46,10 +46,8 @@ export function deleteComment(postId, commentId) {
   }
 }
 
-// thunk action creator
-// API can handle multiple requests
-// option 1: a new thunk for each type of request
-// option 2: mega-thunk with conditional logic to determine how to send request 
+
+// a new thunk for each type of request
 
 const BASE_API_URL = 'http://localhost:5000/api'
 
@@ -72,8 +70,7 @@ export function getTitlesListFromAPI (){
 
 export function getPostFromAPI (id){
   return async function (dispatch) {
-    dispatch(startLoad()); // loadingspinner
-    // dispatch(endLoad()); 
+    dispatch(startLoad());
 
     try {
       let res = await axios.get(`${BASE_API_URL}/posts/${id}`);
@@ -81,6 +78,7 @@ export function getPostFromAPI (id){
       // sending [{},...] to actioncreator gotTitlesList, to dispatch
       // actioncreator: { type: "LOAD_TITLES",  [{},...] }
 
+      // note: gotPost and endLoad both set isLoading to false
       dispatch(gotPost(res.data))
       dispatch(endLoad()); 
     } catch (err) {

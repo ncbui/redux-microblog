@@ -15,46 +15,24 @@ Index  (redux - initialize store)
                 PostForm(edit)
 
 _Redux Store_
-
 {
     posts: {
         id: {
             title, 
             description, 
-            body     
+            body,
+            id,
+            comments   
     },
-    comments: {
-        postID: {
-            commentID: {body},
-            commentID: {body},
-            },
-        postID: { }
-    }
+    titles: {
+        id: {id, title, description},
+        id: {id, title, description},
+    ...}
 }
 
 _Redux Store after Backend Integration_
  - Re-use data for posts that users have viewed
  - Everytime a user accesses a post, we add to posts + titles obj
-
-{
- posts: {{id, title, description, body, comments},...}
-
- titles: {
-     {id, title, description},
-     {id, title, description},
-     ...}
-
-}
-
-     /**
-       * response.data = [{id, title, description, votes}, ...]
-
-       // loop through array, 
-       for each index, add 
-       titles: {
-                id : {id, title, description, votes}
-                }
-       */
 
               
 TODOS:
@@ -71,8 +49,8 @@ x display comments for each post
 x add comments from post
 x delete comments from post
 x blogPost handleDeleteComment(): 
-    - pushed to history to get re-render, 
-    - but find out why component doesn't re-render once state changes. did we mutate state somewhere instead of copying
+    x pushed to history to get re-render, 
+    x but find out why component doesn't re-render once state changes. did we mutate state somewhere instead of copying
 x removed references to starter blog from react App
 - TODOS from CODEREVIEW Added
 
@@ -80,31 +58,22 @@ x When Backend added, remove references to starter blog from redux
 x setup backend (see download)
 x create database, fill with seed data
 x update index.js with redux-thunk and redux-devtools-extension,
-- set isLoading state in redux store (accessible by components and thunks)
-- extend actionCreator.js to include API thunk
+x set isLoading state in redux store (accessible by components and thunks)
+~ extend actionCreator.js to include API thunk
 x make API to load info for PostList
 x for each blogpost, 
-    - make API to receive full details and display
-    - add full and short details to redux store
+    x make API to receive full details and display
+    x add full and short details to redux store
 - adding, editing, deleting post & comments updates backend (api request)
-
+x add an action type for loading posts/comments
+x pull header-text as a prop ;  input title, description, body. Fill out with existing values if existing,
 
 
 LATER TODOS:
-- add an action type for loading posts/comments
 
 BUG STORY:
 - loading BlogPost, stuck with isLoading:true, hints: devtools reveal an action running 3 times
 - are you really comparing the same types; string vs integer
-
-
-Form: pull header-text as a prop ;  input title, description, body. 
-Fill out with existing values if existing,
-
-
-
-Question: 
-- when using reactstrap form input blocks, should we still use htmlFor instead of for 
 
 
 Example dispatches

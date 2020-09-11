@@ -13,10 +13,7 @@ import { getTitlesListFromAPI } from './reducers/actionCreator';
  * Routes -> PostList
  */
 
-
 function PostList() {
-
-  // console.log("dxfgchvjbknlm POSTS IS: " , posts)
   const dispatch = useDispatch()
   
   // get posts from API
@@ -25,15 +22,13 @@ function PostList() {
   }, [dispatch]); 
   
   
-  // get state.title from store
+  // get state.title and state.isLoading from store
   const posts = useSelector(store => store.titles);
   const isLoading = useSelector(store => store.isLoading);
-  // const posts = {}
 
   // render posts with link
   function showPosts() {
     let postsToRender = Object.keys(posts);
-    // console.log("this is postsToRender", postsToRender)
     return postsToRender.map(currentId => (
       <li key={currentId}> 
         <Link to={`/${currentId}`}>
@@ -44,6 +39,7 @@ function PostList() {
     ));
   }
 
+  // show loading message if we haven't made api call for posts yet
   return (
     <div className="PostList">
       <ul>

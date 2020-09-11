@@ -25,7 +25,6 @@ import {
  * 
  */
 
-
 function PostForm({ submitForm , toggleIsEditing, postData }) {
   const emptyForm = {
     title: "",

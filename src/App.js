@@ -7,8 +7,6 @@ import Routes from './Routes';
  * 
  * App -> {Navbar/Header, Routes}
  */
-
-
 function App() {
 
   return (

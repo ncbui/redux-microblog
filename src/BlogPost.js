@@ -22,8 +22,8 @@ import {
  * - isEditing: Boolean to decide to show edit form or post info
  * 
  * Redux
- * - can access store
- * - can dispatch to store
+ * - can access store at state.posts 
+ * - can dispatch to store getPostFromAPI, editPost, deletePost, addComment, deleteComment 
  * 
  * Routes -> BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
  */
@@ -46,11 +46,8 @@ function BlogPost() {
   const postData = useSelector(store => store.posts[id]);
   // console.log("postData", postData); 
  
-
-  // const commentData = []
-  const commentData = useSelector(store => store.posts[id]?.comments) //this is an array instead of obj
+  const commentData = useSelector(store => store.posts[id]?.comments);
   // console.log("this is postData, comments", postData, commentData)
-
 
   function toggleIsEditing(evt) {
     setIsEditing(isEditing => !isEditing);
@@ -74,6 +71,7 @@ function BlogPost() {
     dispatch(deleteComment(id, commentId))  
   }
 
+  // renders PostForm when isEditing is true, renders details about the post and buttons to edit/delete + comment form
   function showPostOrForm() {
     if (isEditing) {
       return <PostForm
@@ -101,6 +99,7 @@ function BlogPost() {
     }
   }
 
+  // if postData exists from redux store, show post, otherwise, show loading msg
   return (
     <div className="BlogPost">
       {!postData &&

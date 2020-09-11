@@ -7,13 +7,10 @@ import {
   NavbarText
 } from 'reactstrap'
 
-
-
 /** Renders Navigation component
  *  
  * App -> Navbar/Header
  */
-
 
 function Navigation() {
   return (
@@ -31,7 +28,6 @@ function Navigation() {
             <NavLink to="/new">Add a new post</NavLink>
           </NavItem>
         </Nav>
-  
       </Navbar>
     </div>
   );

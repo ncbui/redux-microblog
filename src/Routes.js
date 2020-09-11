@@ -7,15 +7,10 @@ import NewPost from './NewPost';
 
 /** Maps URL to components
  * 
- * Prop
- * 
- * State
- * 
  * Routes -> Homepage -> PostList
           -> BlogPost -> PostForm(edit)
           -> NewPost  -> PostForm(new)
  */
-
 
 function Routes() {
   return (

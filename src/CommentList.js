@@ -17,6 +17,7 @@ function CommentList({comments, deleteComment}) {
     deleteComment(commentId);
   }
 
+  // map over comments and list each one
   function showComments() {
     return comments.map(comment => (
       <li key={comment.id}> 
@@ -25,6 +26,7 @@ function CommentList({comments, deleteComment}) {
       </li>
     ));
   }
+
   return (
     <div>
       <h3>Comments</h3>
