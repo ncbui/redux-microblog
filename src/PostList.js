@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTitlesListFromAPI } from './reducers/actionCreator';
 
 
 /** Renders PostList component from store
@@ -15,11 +16,20 @@ import { useSelector } from 'react-redux';
 
 function PostList() {
 
-  // get state.posts from store
-  const posts = useSelector(store => store.posts);
   // console.log("dxfgchvjbknlm POSTS IS: " , posts)
+  const dispatch = useDispatch()
   
-  // for each post, generate a link
+  // get posts from API
+  useEffect(() => {
+    dispatch(getTitlesListFromAPI())
+  }, [dispatch]); 
+  
+  
+  // get state.title from store
+  const posts = useSelector(store => store.titles);
+  // const posts = {}
+
+  // render posts with link
   function showPosts() {
     let postsToRender = Object.keys(posts);
     // console.log("this is postsToRender", postsToRender)

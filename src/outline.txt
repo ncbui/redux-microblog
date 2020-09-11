@@ -14,7 +14,7 @@ Index  (redux - initialize store)
                 PostDisplay 
                 PostForm(edit)
 
-_Store_
+_Redux Store_
 
 {
     posts: {
@@ -31,6 +31,31 @@ _Store_
         postID: { }
     }
 }
+
+_Redux Store after Backend Integration_
+ - Re-use data for posts that users have viewed
+ - Everytime a user accesses a post, we add to posts + titles obj
+
+{
+ posts: {{id, title, description, body, comments},...}
+
+ titles: {
+     {id, title, description},
+     {id, title, description},
+     ...}
+
+}
+
+     /**
+       * response.data = [{id, title, description, votes}, ...]
+
+       // loop through array, 
+       for each index, add 
+       titles: {
+                id : {id, title, description, votes}
+                }
+       */
+
               
 TODOS:
 x research about combined reducers
@@ -51,17 +76,22 @@ x blogPost handleDeleteComment():
 x removed references to starter blog from react App
 - TODOS from CODEREVIEW Added
 
-
-- setup backend (see download)
-- create database, fill with seed data
+x When Backend added, remove references to starter blog from redux
+x setup backend (see download)
+x create database, fill with seed data
+x update index.js with redux-thunk and redux-devtools-extension,
+- extend actionCreator.js to include API thunk
 - make API to load info for PostList
-- for each blogpost, make API to receive full details
-- adding, editing, deleting updates backend
+- for each blogpost, 
+    - make API to receive full details and display
+    - add full and short details to redux store
+- adding, editing, deleting post & comments updates backend (api request)
+
 
 
 LATER TODOS:
 - add an action type for loading posts/comments
-- When Backend added, remove references to starter blog from redux
+
 
 
 

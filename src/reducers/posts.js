@@ -7,8 +7,8 @@ import { ADD_POST, EDIT_POST, DELETE_POST} from './actionTypes';
 //     title: "POST"
 //   }
 // }
-// export default function postReducer(state=INITIAL_STATE, action) {
-export default function postReducer(state, action) {
+
+export default function postReducer(state = {}, action) {
   const postId = action.payload?.postId;
   const postData = action.payload?.postData;
 

@@ -1,4 +1,12 @@
-import { ADD_POST, EDIT_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
+import { 
+  ADD_POST, 
+  EDIT_POST, 
+  DELETE_POST, 
+  ADD_COMMENT, 
+  DELETE_COMMENT,
+  LOAD_TITLES
+} from './actionTypes';
+import axios from 'axios';
 
 export function addPost(postId, postData) {
   return {
@@ -33,4 +41,45 @@ export function deleteComment(postId, commentId) {
     type: DELETE_COMMENT,
     payload: {postId, commentId}
   }
+}
+
+// thunk action creator
+// API can handle multiple requests
+// option 1: a new thunk for each type of request
+// option 2: mega-thunk with conditional logic to determine how to send request 
+
+const BASE_API_URL = 'http://localhost:5000/api'
+
+export function getTitlesListFromAPI (){
+  return async function (dispatch) {
+    dispatch(startLoad()); 
+
+    try {
+      let res = await axios.get(`${BASE_API_URL}/posts`);
+      console.log("response of API request to /posts is:", res.data)
+      // sending [{},...] to actioncreator gotTitlesList, to dispatch
+      // actioncreator: { type: "LOAD_TITLES",  [{},...] }
+
+      dispatch(gotTitlesList(res.data)) //TODO: update
+    } catch (err) {
+      // dispatch(showErr(err.response.data));
+    }
+  }
+}
+
+// normal action creator & action
+// get posts and add to store
+function gotTitlesList(titleList) {
+  return { type: LOAD_TITLES, payload: titleList };
+}
+
+// another normal action creator & action
+// TODO: how to display this
+function showErr(msg) {
+  return { type: "SHOW_ERR", msg };
+}
+// another normal action creator & action
+// TODO: integrate into components
+function startLoad() {
+  return { type: "SHOW_SPINNER" };
 }

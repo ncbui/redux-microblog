@@ -1,11 +1,6 @@
 import { ADD_COMMENT, DELETE_COMMENT, ADD_POST, DELETE_POST } from './actionTypes';
 
-// TODO: comments after research
-// const INITIAL_STATE = {
-//   1: {
-//     2: "comment"
-//   }
-// }
+// TODO: DELETE ME ONCE BACKEND INTEGRATED
 
 // export default function commentReducer(state=INITIAL_STATE, action) {
 export default function commentReducer(state, action) {
