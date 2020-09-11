@@ -27,6 +27,7 @@ function PostList() {
   
   // get state.title from store
   const posts = useSelector(store => store.titles);
+  const isLoading = useSelector(store => store.isLoading);
   // const posts = {}
 
   // render posts with link
@@ -43,7 +44,10 @@ function PostList() {
   return (
     <div className="PostList">
       <ul>
-        {showPosts()}
+        {isLoading &&
+        <p>Loading...</p>}
+        {!isLoading &&
+        showPosts()}
       </ul>
     </div>
   );

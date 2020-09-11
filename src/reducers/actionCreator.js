@@ -1,10 +1,12 @@
 import { 
+  LOAD_POST,
   ADD_POST, 
   EDIT_POST, 
   DELETE_POST, 
   ADD_COMMENT, 
   DELETE_COMMENT,
-  LOAD_TITLES
+  LOAD_TITLES,
+  SHOW_SPINNER,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -67,19 +69,40 @@ export function getTitlesListFromAPI (){
   }
 }
 
+export function getPostFromAPI (id){
+  return async function (dispatch) {
+    dispatch(startLoad()); 
+
+    try {
+      let res = await axios.get(`${BASE_API_URL}/posts/${id}`);
+      console.log("response of API request to /posts/:id is:", res.data)
+      // sending [{},...] to actioncreator gotTitlesList, to dispatch
+      // actioncreator: { type: "LOAD_TITLES",  [{},...] }
+
+      dispatch(gotPost(res.data)) //TODO: update
+    } catch (err) {
+      // dispatch(showErr(err.response.data));
+    }
+  }
+}
+
 // normal action creator & action
 // get posts and add to store
-function gotTitlesList(titleList) {
+export function gotTitlesList(titleList) {
   return { type: LOAD_TITLES, payload: titleList };
+}
+
+export function gotPost(post) {
+  return { type: LOAD_POST, payload: post };
 }
 
 // another normal action creator & action
 // TODO: how to display this
-function showErr(msg) {
+export function showErr(msg) {
   return { type: "SHOW_ERR", msg };
 }
 // another normal action creator & action
 // TODO: integrate into components
-function startLoad() {
-  return { type: "SHOW_SPINNER" };
+export function startLoad() {
+  return { type: SHOW_SPINNER };
 }

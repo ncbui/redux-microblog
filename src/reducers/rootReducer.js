@@ -1,11 +1,13 @@
 import { 
+  LOAD_POST,
   ADD_POST, 
   EDIT_POST, 
   DELETE_POST, 
   ADD_COMMENT, 
   DELETE_COMMENT,
   LOAD_TITLES,
-LOAD_POST_DETAIL
+  LOAD_POST_DETAIL,
+  SHOW_SPINNER,
  } from './actionTypes';
 import postReducer from './posts';
 import titleReducer from './titles';
@@ -16,7 +18,8 @@ import titleReducer from './titles';
 // research options for setting default in individual reducers
 const combinedInitialState = {
   posts: {},
-  titles: {}
+  titles: {},
+  isLoading: false,
 }
 
 
@@ -27,11 +30,31 @@ const combinedInitialState = {
 
 export default function rootReducer(state = combinedInitialState, action) {
   switch (action.type) {
+
+    case SHOW_SPINNER: {
+      console.log("loading")
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
+
     case LOAD_TITLES: {
       console.log("LOAD_TITLES from rootReducer")
       return {
         ...state,
-        titles: titleReducer(state.titles, action)
+        titles: titleReducer(state.titles, action),
+        isLoading: false
+      }
+    }
+    
+    //TODO looks like titles being overwritten w/ {}
+    case LOAD_POST: {
+      console.log("LOAD_POST from rootReducer")
+      return {
+        ...state,
+        posts: postReducer(state.posts, action),
+        isLoading: false
       }
     }
 

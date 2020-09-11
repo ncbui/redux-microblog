@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
 import PostForm from './PostForm';
 import { useHistory, useParams } from 'react-router-dom';
@@ -10,7 +10,9 @@ import {
   editPost,
   deletePost,
   addComment,
-  deleteComment
+  deleteComment,
+  getPostFromAPI,
+  startLoad
 } from './reducers/actionCreator';
 
 
@@ -28,6 +30,7 @@ import {
 
 
 function BlogPost() {
+  dispatch(startLoad()); 
   const [isEditing, setIsEditing] = useState(false);
 
   const history = useHistory();
@@ -35,9 +38,19 @@ function BlogPost() {
   const dispatch = useDispatch();
 
   const { id } = useParams();
+
+  useEffect(() => {
+    console.log("useEffect in BlogPost ran")
+    dispatch(getPostFromAPI(id));
+  }, [dispatch]);
+  
   const postData = useSelector(store => store.posts[id]);
-  const commentData = useSelector(store => store.comments[id])
-  console.log("this is postData, comments", postData, commentData)
+  const isLoading = useSelector(store => store.isLoading);
+  console.log("after useEffect, this isLoading", isLoading)
+
+  const commentData = {}
+  // const commentData = useSelector(store => store.posts[id].comments)
+  // console.log("this is postData, comments", postData, commentData)
 
 
   function toggleIsEditing(evt) {
@@ -45,7 +58,7 @@ function BlogPost() {
   }
 
   function submitPostForm(data, id) {
-    console.log("submitPostForm ran, here is data, id", data, id)
+    // console.log("submitPostForm ran, here is data, id", data, id)
     dispatch(editPost(id, data));
   }
 
@@ -61,7 +74,6 @@ function BlogPost() {
   function handleDeleteComment(commentId) {
     dispatch(deleteComment(id, commentId))  
   }
-
 
   function showPostOrForm() {
     if (isEditing) {
@@ -92,7 +104,10 @@ function BlogPost() {
 
   return (
     <div className="BlogPost">
-      {showPostOrForm()}
+      {isLoading &&
+      <p>Loading...</p>}
+      {!isLoading &&
+      showPostOrForm()}
     </div>
   );
 }

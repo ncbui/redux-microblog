@@ -1,4 +1,4 @@
-import { ADD_POST, EDIT_POST, DELETE_POST} from './actionTypes';
+import { LOAD_POST, ADD_POST, EDIT_POST, DELETE_POST} from './actionTypes';
 
 // TODO: comments after research
 
@@ -13,6 +13,15 @@ export default function postReducer(state = {}, action) {
   const postData = action.payload?.postData;
 
   switch (action.type) {
+    case LOAD_POST: {
+      const post = action.payload;
+      let stateCopy = {...state};
+      stateCopy[post.id] = post;
+      console.log("LOAD_POST from postReducer, this is stateCopy", stateCopy)
+      
+      return stateCopy;
+    }
+
     case ADD_POST:
       // console.log("ADD_POST in postReducer. state is: ", state, "copy is ", { ...state, '999': postData})
       return ({
