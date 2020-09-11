@@ -7,6 +7,7 @@ import {
   DELETE_COMMENT,
   LOAD_TITLES,
   SHOW_SPINNER,
+  HIDE_SPINNER
 } from './actionTypes';
 import axios from 'axios';
 
@@ -58,7 +59,7 @@ export function getTitlesListFromAPI (){
 
     try {
       let res = await axios.get(`${BASE_API_URL}/posts`);
-      console.log("response of API request to /posts is:", res.data)
+      // console.log("response of API request to /posts is:", res.data)
       // sending [{},...] to actioncreator gotTitlesList, to dispatch
       // actioncreator: { type: "LOAD_TITLES",  [{},...] }
 
@@ -71,17 +72,20 @@ export function getTitlesListFromAPI (){
 
 export function getPostFromAPI (id){
   return async function (dispatch) {
-    dispatch(startLoad()); 
+    dispatch(startLoad()); // loadingspinner
+    // dispatch(endLoad()); 
 
     try {
       let res = await axios.get(`${BASE_API_URL}/posts/${id}`);
-      console.log("response of API request to /posts/:id is:", res.data)
+      // console.log("response of API request to /posts/:id is:", res.data)
       // sending [{},...] to actioncreator gotTitlesList, to dispatch
       // actioncreator: { type: "LOAD_TITLES",  [{},...] }
 
-      dispatch(gotPost(res.data)) //TODO: update
+      dispatch(gotPost(res.data))
+      dispatch(endLoad()); 
     } catch (err) {
       // dispatch(showErr(err.response.data));
+      console.error(err);
     }
   }
 }
@@ -105,4 +109,8 @@ export function showErr(msg) {
 // TODO: integrate into components
 export function startLoad() {
   return { type: SHOW_SPINNER };
+}
+
+export function endLoad(){
+  return { type: HIDE_SPINNER }
 }

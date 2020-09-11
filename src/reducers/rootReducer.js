@@ -6,8 +6,8 @@ import {
   ADD_COMMENT, 
   DELETE_COMMENT,
   LOAD_TITLES,
-  LOAD_POST_DETAIL,
   SHOW_SPINNER,
+  HIDE_SPINNER
  } from './actionTypes';
 import postReducer from './posts';
 import titleReducer from './titles';
@@ -32,15 +32,22 @@ export default function rootReducer(state = combinedInitialState, action) {
   switch (action.type) {
 
     case SHOW_SPINNER: {
-      console.log("loading")
+      // console.log("loading")
       return {
         ...state,
         isLoading: true
       }
     }
 
+    case HIDE_SPINNER: {
+      return ({
+        ...state,
+        isLoading: false
+      })
+    }
+
     case LOAD_TITLES: {
-      console.log("LOAD_TITLES from rootReducer")
+      // console.log("LOAD_TITLES from rootReducer")
       return {
         ...state,
         titles: titleReducer(state.titles, action),
@@ -50,11 +57,11 @@ export default function rootReducer(state = combinedInitialState, action) {
     
     //TODO looks like titles being overwritten w/ {}
     case LOAD_POST: {
-      console.log("LOAD_POST from rootReducer")
+      // console.log("LOAD_POST from rootReducer")
       return {
         ...state,
         posts: postReducer(state.posts, action),
-        isLoading: false
+        isLoading: false // DEBUGGING: no changing isLoading
       }
     }
 
@@ -88,13 +95,12 @@ export default function rootReducer(state = combinedInitialState, action) {
     //   }
     // } 
 
-    // case DELETE_COMMENT: {
-    //   return {
-    //     ...state,
-    //     posts: { ...state.posts},
-    //     titles: titleReducer(state.titles, action)
-    //   }
-    // }
+    case DELETE_COMMENT: {
+      return {
+        ...state,
+        posts: postReducer(state.posts, action)
+      }
+    }
 
     default:
       return state

@@ -9,22 +9,19 @@ import React from 'react';
  *  BlogPost -> {PostDisplay, PostForm, CommentList, CommentForm }
  */
 function CommentList({comments, deleteComment}) {
-  console.log("<CommentList />, comments is: ", comments)
+  // console.log("<CommentList />, comments is: ", comments)
 
   function handleDeleteComment(evt) {
-    console.log("evt.target", evt.currentTarget.id)
+    // console.log("evt.target", evt.currentTarget.id)
     const commentId = evt.currentTarget.id;
     deleteComment(commentId);
   }
 
   function showComments() {
-    let commentsToRender = Object.keys(comments);
-    // console.log("this is postsToRender", postsToRender)
-
-    return commentsToRender.map(commentId => (
-      <li key={commentId}> 
-        <button id={commentId} onClick={handleDeleteComment}> X </button> 
-        {comments[commentId].body}
+    return comments.map(comment => (
+      <li key={comment.id}> 
+        <button id={comment.id} onClick={handleDeleteComment}> X </button> 
+        {comment.text}
       </li>
     ));
   }

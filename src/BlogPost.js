@@ -12,7 +12,7 @@ import {
   addComment,
   deleteComment,
   getPostFromAPI,
-  startLoad
+  startLoad, endLoad
 } from './reducers/actionCreator';
 
 
@@ -30,26 +30,25 @@ import {
 
 
 function BlogPost() {
-  dispatch(startLoad()); 
   const [isEditing, setIsEditing] = useState(false);
-
+  
   const history = useHistory();
-
+  
   const dispatch = useDispatch();
-
+  
   const { id } = useParams();
-
+  
   useEffect(() => {
-    console.log("useEffect in BlogPost ran")
+    // console.log("useEffect in BlogPost ran")
     dispatch(getPostFromAPI(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   
   const postData = useSelector(store => store.posts[id]);
-  const isLoading = useSelector(store => store.isLoading);
-  console.log("after useEffect, this isLoading", isLoading)
+  // console.log("postData", postData); 
+ 
 
-  const commentData = {}
-  // const commentData = useSelector(store => store.posts[id].comments)
+  // const commentData = []
+  const commentData = useSelector(store => store.posts[id]?.comments) //this is an array instead of obj
   // console.log("this is postData, comments", postData, commentData)
 
 
@@ -104,10 +103,12 @@ function BlogPost() {
 
   return (
     <div className="BlogPost">
-      {isLoading &&
-      <p>Loading...</p>}
-      {!isLoading &&
-      showPostOrForm()}
+      {!postData &&
+        <p>Loading...</p>
+      }
+      {postData &&
+        showPostOrForm()
+      }
     </div>
   );
 }

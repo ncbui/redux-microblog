@@ -2,8 +2,8 @@ import {
   ADD_POST, 
   EDIT_POST, 
   DELETE_POST,
-  LOAD_TITLES,
-  LOAD_POST_DETAIL} from './actionTypes';
+  LOAD_TITLES
+} from './actionTypes';
 
 // TODO: comments after research
 
@@ -20,12 +20,12 @@ export default function titleReducer(state = {}, action) {
   // console.log("titleReducer ran");
   switch (action.type) {
     case LOAD_TITLES: {
-      console.log("LOAD_TITLES from titleReducer, action.payload is ", action.payload)
+      // console.log("LOAD_TITLES from titleReducer, action.payload is ", action.payload)
       const titlesList = action.payload
 
       let stateCopy = {...state}
       for (let title of titlesList) {
-        console.log("looping title", title, "id is", title.id);
+        // console.log("looping title", title, "id is", title.id);
         stateCopy[title.id] = title;
       }
       //  console.log("stateCopy after loop", stateCopy)
@@ -40,7 +40,7 @@ export default function titleReducer(state = {}, action) {
       })
     
     case EDIT_POST:{
-      console.log("EDIT_POST in postReducer. state before edits is: ", state)
+      // console.log("EDIT_POST in postReducer. state before edits is: ", state)
       return ({
         ...state,
         [titleId]: titleData

@@ -36,7 +36,10 @@ function PostList() {
     // console.log("this is postsToRender", postsToRender)
     return postsToRender.map(currentId => (
       <li key={currentId}> 
-        <Link to={`/${currentId}`}><b>{posts[currentId].title}</b></Link> <em> {posts[currentId].description}</em>
+        <Link to={`/${currentId}`}>
+          <b>{posts[currentId].title}</b>
+        </Link> 
+        <em> {posts[currentId].description}</em>
       </li>
     ));
   }

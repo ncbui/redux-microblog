@@ -80,9 +80,10 @@ x When Backend added, remove references to starter blog from redux
 x setup backend (see download)
 x create database, fill with seed data
 x update index.js with redux-thunk and redux-devtools-extension,
+- set isLoading state in redux store (accessible by components and thunks)
 - extend actionCreator.js to include API thunk
-- make API to load info for PostList
-- for each blogpost, 
+x make API to load info for PostList
+x for each blogpost, 
     - make API to receive full details and display
     - add full and short details to redux store
 - adding, editing, deleting post & comments updates backend (api request)
@@ -92,7 +93,9 @@ x update index.js with redux-thunk and redux-devtools-extension,
 LATER TODOS:
 - add an action type for loading posts/comments
 
-
+BUG STORY:
+- loading BlogPost, stuck with isLoading:true, hints: devtools reveal an action running 3 times
+- are you really comparing the same types; string vs integer
 
 
 Form: pull header-text as a prop ;  input title, description, body. 
